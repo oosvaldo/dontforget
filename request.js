@@ -5,12 +5,11 @@ $(document).ready(function(){
 
 function sendWord(){
 	var meaning = $("#meaning"),
-	 	word 	= $("#word").val();
-	 
+	 	word 	= $("#myword").val();
+
 	if(word != '') {
-		$("#myword").html(word);
 		$.ajax({
-			data: {'service': 'meaning', 'word': word},
+			data: {'service': 'get', 'word': word},
 			type: "POST",
 			url : "server.php",
 			success: function(response){
@@ -22,16 +21,17 @@ function sendWord(){
 						$("#langme").html('English');
 						$("#langmw").html('Spanish')
 					}
-					meaning.html(response);
+					meaning.val(response);
 				} else {
-					meaning.html('NO FOUND');
+					meaning.val('NO FOUND');
 					meaning.removeClass('word_box');
 					meaning.addClass('nofound');
 					setTimeout(function() {
 						meaning.removeClass('nofound');
 						meaning.addClass('word_box');
-						meaning.html('----');
-					}, 3000);
+						meaning.val('');
+						meaning.removeAttr('disabled');
+					}, 2000);
 				}
 			} 
 		});

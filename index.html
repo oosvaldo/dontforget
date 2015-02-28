@@ -11,17 +11,14 @@
 
 	<body>
 		<section class="container">
-			<div class="input_centered">
-				<input id="word" type="text" placeholder="type some word"/>
-				<button class="join" onclick="sendWord()">Trans</button>
-			</div>
 			<div class="word_cont">
-				<span id="myword" class="word_box">----</span>
 				<span id="langmw"></span>
+				<input id="myword" class="word_box" placeholder="----"/>
 			</div>
+			<button class="join" onclick="sendWord()">Trans</button>
 			<div class="word_cont">
-				<span id="meaning" class="word_box">----</span>
 				<span id="langme"></span>
+				<input id="meaning" class="word_box" disabled placeholder="----"/>
 			</div>
 		</section>
 	</body>

@@ -4,7 +4,7 @@ include 'mysqls.php';
 $service = getPost('service');
 
 switch ($service) {
-	case 'meaning':
+	case 'get':
 		$word	 = getPost('word');
 		$word && getMeaning($word);
 		break;

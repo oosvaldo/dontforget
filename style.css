@@ -1,24 +1,20 @@
-.input_centered{
-	width: 40%;
-	margin: auto;
-	text-align: center;
-}
-.input_centered > input, .input_centered > button{
-	border-radius: 5px;
-	padding: 5px;
-	text-align: center;
-}
+
 .container{
 	width: 80%;
 	margin: auto;
 }
+
+.container > button{
+	width: 8%;
+	float: left;
+	padding: 10px;
+	margin-top: 40px;
+}
+
 .word_cont{
-	width: 48%;
-	height: 50px;
-	display: inline-block;
+	width: 40%;
 	float: left;
 	margin-top: 20px;
-	padding: 10px;
 }
 .nofound{
 	border: 2px solid rgba(255,0,0,0.5);
@@ -29,11 +25,16 @@
 	border: 2px solid rgba(100,100,100,0.5);
 }
 
-.word_cont :first-child{
+.word_cont > input{
 	border-radius: 5px;
 	display: inherit;
 	margin: auto;
 	text-align: center;
 	padding: 15px;
+	width: 80%;
+}
+
+.word_cont > span{
+	margin: 28px;
 }
 
