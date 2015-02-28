@@ -20,12 +20,20 @@
 	margin-top: 20px;
 	padding: 10px;
 }
+.nofound{
+	border: 2px solid rgba(255,0,0,0.5);
+	color: gray;
+	font-style: italic
+}
+.word_box{
+	border: 2px solid rgba(100,100,100,0.5);
+}
 
 .word_cont :first-child{
-	border: 2px solid rgba(100,100,100,0.5);
 	border-radius: 5px;
 	display: inherit;
 	margin: auto;
 	text-align: center;
 	padding: 15px;
 }
+

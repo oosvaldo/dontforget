@@ -34,9 +34,16 @@ function getMeaning($word) {
 		$result = Mysqls::run($query);
 		$lang = 'es';
 	}
-
-	echo json_encode(array(
+	if(!$result) {
+		echo json_encode(array(
+					'status' 	=> 500
+				));
+	}
+	else {
+		echo json_encode(array(
 			'meaning' 	=> $result['word'],
-			'language'	=> $lang 
+			'language'	=> $lang,
+			'status' 	=> 200
 		));
+	}
 }
