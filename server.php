@@ -18,7 +18,8 @@ function getPost($index) {
 	return (isset($_POST[$index])) ? $_POST[$index] : FALSE;
 }
 
-function getMeaning($word ) {
+function getMeaning($word) {
+	$lang = 'en';
 	$query 	= "SELECT s.word FROM t_swords AS s 
 				JOIN t_eword_sword AS es ON s.id = es.sword 
 				JOIN t_ewords AS e ON es.eword = e.id 
@@ -31,7 +32,11 @@ function getMeaning($word ) {
 					JOIN t_swords AS s ON es.eword = s.id 
 					WHERE s.word = '$word'";
 		$result = Mysqls::run($query);
+		$lang = 'es';
 	}
 
-	echo "$word : ". $result['word'];
+	echo json_encode(array(
+			'meaning' 	=> $result['word'],
+			'language'	=> $lang 
+		));
 }

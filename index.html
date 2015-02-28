@@ -5,12 +5,24 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="jquery-1.6.3.min.js"></script>
 		<script type="text/javascript" src="request.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css">
 		<title>DontForget</title>
 	</head>
 
 	<body>
-		<input id="word" type="text" />
-		<div id="meaning"></div>
-		<button onclick="sendWord()">Send</button>
+		<section class="container">
+			<div class="input_centered">
+				<input id="word" type="text" />
+				<button class="join" onclick="sendWord()">Trans</button>
+			</div>
+			<div class="word_cont">
+				<span id="myword">----</span>
+				<span id="langmw"></span>
+			</div>
+			<div class="word_cont">
+				<span id="meaning">----</span>
+				<span id="langme"></span>
+			</div>
+		</section>
 	</body>
 </html>
