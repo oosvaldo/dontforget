@@ -8,7 +8,11 @@ switch ($service) {
 		$word	 = getPost('word');
 		$word && getMeaning($word);
 		break;
-	
+	case 'set':
+		$word	 = getPost('word');
+		$mean	 = getPost('mean');
+		$word && $mean && saveWord($word, $mean);
+		break;
 	default:
 		echo "You Service is missing";
 		break;
@@ -42,8 +46,28 @@ function getMeaning($word) {
 	else {
 		echo json_encode(array(
 			'meaning' 	=> $result['word'],
-			'language'	=> $lang,
+			'lang'		=> $lang,
 			'status' 	=> 200
 		));
+	}
+}
+
+function saveWord($word, $meaning) {
+	$status = 200;
+	$query 	= "	INSERT INTO t_ewords (word) VALUES ('$word');
+				INSERT INTO t_swords (word) VALUES ('$meaning');
+				INSERT INTO t_eword_sword VALUES (
+					(SELECT MAX(id) FROM t_ewords),
+					(SELECT MAX(id) FROM t_swords), NULL)";
+	$result = Mysqls::multi($query);
+
+	if($result){
+		echo json_encode(array(
+				'status' 	=> 200
+			));
+	} else {
+		echo json_encode(array(
+				'status' 	=> 500
+			));
 	}
 }

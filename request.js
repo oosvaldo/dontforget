@@ -11,7 +11,6 @@ $(document).ready(function(){
 			$('#t_save').hide();
 			$('#t_send').show();
 		}
-		console.log($(this).val());
 	});
 
 	$("#meaning").focus(function(){
@@ -30,15 +29,17 @@ function sendWord(){
 			type: "POST",
 			url : "server.php",
 			success: function(res){
-				if(res.indexOf('200') > 0){
-					if(res.indexOf('en') > 0){
+				res = jQuery.parseJSON(res);
+
+				if(res.status == 200){
+					if(res.lang == 'en'){
 						$("#langmw").html('English');
 						$("#langme").html('Spanish');
 					} else {
 						$("#langme").html('English');
 						$("#langmw").html('Spanish')
 					}
-					meaning.val(res);
+					meaning.val(res.meaning);
 					//meaning.addAttr('disabled');
 				} else {
 					meaning.val('NO FOUND');
@@ -66,7 +67,31 @@ function saveWord(){
 			type: "POST",
 			url : "server.php",
 			success: function(res){
-				meaning.val(res);
+				res = jQuery.parseJSON(res);
+				
+				if(res.status == 200){
+					meaning.val('SAVED');
+					meaning.removeClass('word_box');
+					meaning.addClass('success');
+					setTimeout(function() {
+						meaning.removeClass('success');
+						meaning.addClass('word_box');
+						meaning.val('');
+						$('#t_save').hide();
+						$('#t_send').show();
+					}, 2000);
+				} else {
+					meaning.val('ERROR');
+					meaning.removeClass('word_box');
+					meaning.addClass('nofound');
+					setTimeout(function() {
+						meaning.removeClass('nofound');
+						meaning.addClass('word_box');
+						meaning.val('');
+						$('#t_save').hide();
+						$('#t_send').show();
+					}, 2000);
+				}
 			}
 		});
 	}
