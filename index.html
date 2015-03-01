@@ -5,6 +5,8 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="jquery-1.6.3.min.js"></script>
 		<script type="text/javascript" src="request.js"></script>
+
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<title>DontForget</title>
 	</head>
@@ -15,8 +17,13 @@
 				<span id="langmw"></span>
 				<input id="myword" class="word_box" placeholder="----"/>
 			</div>
-			<button id="t_send" onclick="sendWord()">Trans</button>
-			<button id="t_save" onclick="saveWord()">Save</button>
+			<div class="t_buttons">
+				<button id="t_switch">
+					<i class="fa fa-exchange"></i>
+	 			</button>
+				<button id="t_send" onclick="sendWord()">Trans</button>
+				<button id="t_save" onclick="saveWord()">Save</button>
+			</div>
 			<div class="word_cont">
 				<span id="langme"></span>
 				<input id="meaning" class="word_box" placeholder="----"/>

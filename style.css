@@ -4,13 +4,15 @@
 	margin: auto;
 }
 
-.container > button{
+.t_buttons{
 	width: 8%;
 	float: left;
-	padding: 10px;
-	margin-top: 40px;
 }
-
+.t_buttons > button{
+	padding: 10px;
+	width: 100%
+}
+	
 .word_cont{
 	width: 40%;
 	float: left;

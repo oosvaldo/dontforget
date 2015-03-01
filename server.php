@@ -9,9 +9,10 @@ switch ($service) {
 		$word && getMeaning($word);
 		break;
 	case 'set':
+		$lang	 = getPost('lang');
 		$word	 = getPost('word');
 		$mean	 = getPost('mean');
-		$word && $mean && saveWord($word, $mean);
+		$lang && $word && $mean && saveWord($lang, $word, $mean);
 		break;
 	default:
 		echo "You Service is missing";
@@ -52,10 +53,14 @@ function getMeaning($word) {
 	}
 }
 
-function saveWord($word, $meaning) {
+function saveWord($lang, $word, $meaning) {
 	$status = 200;
-	$query 	= "	INSERT INTO t_ewords (word) VALUES ('$word');
-				INSERT INTO t_swords (word) VALUES ('$meaning');
+
+	$tword = ($lang == 'en') ? 't_ewords' : 't_swords';
+	$tmean = ($lang == 'en') ? 't_swords' : 't_ewords';
+
+	$query 	= "	INSERT INTO $tword (word) VALUES ('$word');
+				INSERT INTO $tmean (word) VALUES ('$meaning');
 				INSERT INTO t_eword_sword VALUES (
 					(SELECT MAX(id) FROM t_ewords),
 					(SELECT MAX(id) FROM t_swords), NULL)";

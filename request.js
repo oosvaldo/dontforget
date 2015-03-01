@@ -1,4 +1,7 @@
 $(document).ready(function(){
+	$("#meaning").val('');
+	$("#myword").val('');
+
 	if($("#meaning").val() === ''){
 		$('#t_save').hide();
 	}
@@ -16,6 +19,17 @@ $(document).ready(function(){
 	$("#meaning").focus(function(){
 		$('#t_save').show();
 		$('#t_send').hide();
+	});
+
+	$('#t_switch').click(function(){
+		console.log('goo');
+		if($("#langmw").html() == 'Spanish'){
+			$("#langmw").html('English');
+			$("#langme").html('Spanish');
+		} else {
+			$("#langme").html('English');
+			$("#langmw").html('Spanish')
+		}
 	});
 });
 
@@ -59,11 +73,14 @@ function sendWord(){
 // Send the meaning and the word to save
 function saveWord(){
 	var meaning = $("#meaning"),
-	 	word 	= $("#myword").val();
+	 	word 	= $("#myword").val(),
+	 	lang;
 
 	if(word !== '' && meaning.val() !== ''){
+		lang = ($("#langmw").html() == 'Spanish') ? 'es' : 'en';
+
 		$.ajax({
-			data: {'service': 'set', 'word': word, 'mean' : meaning.val()},
+			data: {'service': 'set', 'lang':lang, 'word': word, 'mean' : meaning.val()},
 			type: "POST",
 			url : "server.php",
 			success: function(res){
